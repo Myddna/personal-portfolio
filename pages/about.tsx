@@ -59,7 +59,10 @@ const About: NextPage = () => {
           </li>
         </ul>
         <div className="flex space-x-6 my-10 pl-4">
-          <a className="btn btn-primary" href="/MartaMorosBatlle_ENG_CV.pdf">
+          <a
+            className="btn btn-primary"
+            href="/MartaMorosBatlle_ENG_CV_NPD.pdf"
+          >
             Download my resume
           </a>
           <a
