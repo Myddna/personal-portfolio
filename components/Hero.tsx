@@ -23,7 +23,7 @@ const Hero = () => {
           />
         </div>
         <div>
-          <div className="font-title font-light text-6xl text-gray-600">
+          <div className="font-title font-light text-5xl sm:text-7xl text-gray-600">
             <span className="decoration-clone bg-clip-text text-transparent bg-gradient-to-b from-yellow-300 to-red-500">
               think
             </span>

@@ -9,7 +9,19 @@ const LatestProjects: FunctionComponent<Props> = ({ className }: Props) => {
   return (
     <TextBlock className={className}>
       <h1>Latest projects</h1>
-      <p>ASDF</p>
+      <p>
+        GitHub API Integration Coming Soon&trade;. In the meantime you can...
+      </p>
+      <div className="mt-8 flex">
+        <a
+          href="https://github.com/Myddna"
+          className="btn btn-primary"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Check my GitHub
+        </a>
+      </div>
     </TextBlock>
   );
 };

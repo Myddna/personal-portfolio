@@ -10,7 +10,7 @@ const Navigation: FunctionComponent = () => {
 
   return (
     <header className="bg-purple-900 mx-auto px-4 py-2 bg-gradient-to-r from-purple-800 to-purple-900">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center flex-col sm:flex-row">
         <div className="flex flex-col">
           <Link href="/">
             <a>
@@ -31,8 +31,8 @@ const Navigation: FunctionComponent = () => {
         </div>
         <nav className="flex space-x-4 text-white">
           <NavItem href="/about" text="About me" />
-          <NavItem href="/experience" text="Experience" />
-          <NavItem href="/projects" text="Projects" />
+          {/*<NavItem href="/experience" text="Experience" />*/}
+          {/*<NavItem href="/projects" text="Projects" />*/}
           <NavItem href="/contact" text="Contact" />
         </nav>
       </div>

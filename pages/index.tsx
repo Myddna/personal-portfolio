@@ -69,7 +69,7 @@ const Home: NextPage = () => {
         </div>
       </TextBlock>
       <LatestProjects className="shadow-sm" />
-      <TechStack className="shadow-sm bg-gray-50" />
+      {/*<TechStack className="shadow-sm bg-gray-50" />*/}
     </PageContainer>
   );
 };

@@ -3,7 +3,8 @@ import { ReactNode, FunctionComponent } from "react";
 import Head from "next/head";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import styles from "./PageContainer.module.css";
 
 type Props = {
   children?: ReactNode;
@@ -81,7 +82,7 @@ const PageContainer: FunctionComponent<Props> = ({
       </Head>
       <div className="w-full">
         <Navigation />
-        <main>{children}</main>
+        <main className={styles.mainContainer}>{children}</main>
         <Footer />
       </div>
       <Toaster

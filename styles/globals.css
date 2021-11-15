@@ -4,10 +4,10 @@
 
 @layer base {
   h1 {
-    @apply text-4xl mt-6 mb-7 text-purple-900 font-light font-title;
+    @apply text-5xl mt-6 mb-7 text-purple-900 font-light font-title;
   }
   h2 {
-    @apply text-3xl mt-4 mb-4 text-purple-800 font-medium font-title;
+    @apply text-3xl mt-6 mb-5 text-purple-800 font-medium font-title;
   }
   h3 {
     @apply text-2xl mt-4 mb-3 text-purple-700 font-medium font-title;
@@ -17,6 +17,9 @@
   }
   main a {
     @apply text-purple-700 underline hover:text-yellow-500 transition-colors;
+  }
+  main ul {
+    @apply pl-4 mb-4 list-inside list-disc;
   }
 }
 

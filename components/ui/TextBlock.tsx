@@ -11,7 +11,7 @@ const TextBlock: FunctionComponent<Props> = ({
 }: Props) => {
   return (
     <section className={className}>
-      <div className="max-w-screen-lg px-4 pt-10 pb-12 mx-auto text-gray-500 text-lg">
+      <div className="max-w-screen-lg px-4 pt-10 pb-16 mx-auto text-gray-500 text-lg">
         {children}
       </div>
     </section>
