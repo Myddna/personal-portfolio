@@ -15,7 +15,7 @@ const Home: NextPage = () => {
   );
 
   return (
-    <PageContainer>
+    <PageContainer image="/screenshotPortfolio.png">
       <Hero />
       <TextBlock className="shadow-sm bg-gray-50">
         <h1 className="section-title">Hi! I’m Marta :)</h1>
