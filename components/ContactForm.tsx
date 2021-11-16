@@ -1,5 +1,7 @@
 import { FunctionComponent, useState, SyntheticEvent } from "react";
 import toast from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 const ContactForm: FunctionComponent = () => {
   const [name, setName] = useState("");
@@ -132,7 +134,7 @@ const ContactForm: FunctionComponent = () => {
           className="btn btn-secondary"
           disabled={submitting}
         >
-          Send message
+          <FontAwesomeIcon icon={faPaperPlane} /> Send it!
         </button>
       </div>
     </form>

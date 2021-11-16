@@ -1,8 +1,11 @@
 import type { NextPage } from "next";
+import Link from "next/link";
 import PageContainer from "../components/structure/PageContainer";
 import SimpleHighlight from "../components/ui/SimpleHighlight";
 import TextBlock from "../components/ui/TextBlock";
 import { yearsPassed } from "../utils/utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope, faFileDownload } from "@fortawesome/free-solid-svg-icons";
 
 const About: NextPage = () => {
   const yearsExperience = yearsPassed(
@@ -63,14 +66,13 @@ const About: NextPage = () => {
             className="btn btn-primary"
             href="/MartaMorosBatlle_ENG_CV_NPD.pdf"
           >
-            Download my resume
+            <FontAwesomeIcon icon={faFileDownload} /> Download my resume
           </a>
-          <a
-            className="btn btn-secondary"
-            href="https://www.linkedin.com/in/marta-moros-batlle/"
-          >
-            LinkedIn profile
-          </a>
+          <Link href="/contact">
+            <a className="btn btn-secondary">
+              <FontAwesomeIcon icon={faEnvelope} /> Get in touch
+            </a>
+          </Link>
         </div>
         <h2>There is more...</h2>
         <p>
