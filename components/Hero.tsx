@@ -1,6 +1,6 @@
 import Image from "next/image";
-import pic from "../public/profilePic.jpg";
-import bg from "../public/bg.jpg";
+import pic from "../assets/profilePic.webp";
+import bg from "../assets/bg.webp";
 
 const Hero = () => {
   return (
