@@ -6,6 +6,7 @@ import TextBlock from "../components/ui/TextBlock";
 import { yearsPassed } from "../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faFileDownload } from "@fortawesome/free-solid-svg-icons";
+import resumePDF from "../assets/MartaMorosBatlle_ENG_CV_NPD.pdf";
 
 const About: NextPage = () => {
   const yearsExperience = yearsPassed(
@@ -62,10 +63,7 @@ const About: NextPage = () => {
           </li>
         </ul>
         <div className="flex space-x-6 my-10 pl-4">
-          <a
-            className="btn btn-primary"
-            href="/MartaMorosBatlle_ENG_CV_NPD.pdf"
-          >
+          <a className="btn btn-primary" href={resumePDF}>
             <FontAwesomeIcon icon={faFileDownload} /> Download my resume
           </a>
           <Link href="/contact">
