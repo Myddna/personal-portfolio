@@ -1,9 +1,8 @@
 import Image from "next/image";
 import pic from "../assets/profilePic.webp";
-//import bg from "../assets/bg.webp";
 
 type Props = {
-  bg: object;
+  bg: StaticImageData;
 };
 
 const Hero = ({ bg }: Props) => {
