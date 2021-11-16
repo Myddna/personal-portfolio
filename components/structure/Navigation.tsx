@@ -9,6 +9,7 @@ const Navigation: FunctionComponent = () => {
   const router = useRouter();
 
   const myName = "Marta Moros Batlle";
+  console.log("Current route", router.asPath);
 
   return (
     <header className="bg-purple-900 mx-auto px-4 py-2 bg-gradient-to-r from-purple-800 to-purple-900">
@@ -35,9 +36,11 @@ const Navigation: FunctionComponent = () => {
                   </div>
                 )}
                 */}
+                {/**
                 <div className="text-white font-medium font-title text-2xl my-0 leading-none">
                   {myName}
                 </div>
+                 */}
                 <div className="text-purple-200 text-sm">
                   Software Engineer and Web Developer
                 </div>
