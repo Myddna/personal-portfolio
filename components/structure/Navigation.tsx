@@ -25,17 +25,15 @@ const Navigation: FunctionComponent = () => {
                 height={46}
               />
               <div className="flex flex-col">
-                {/** 
                 {router.asPath === "/" ? (
                   <h1 className="text-white font-medium font-title text-2xl my-0 leading-none">
-                    {myName}
+                    {myName} titulo home
                   </h1>
                 ) : (
                   <div className="text-white font-medium font-title text-2xl my-0 leading-none">
-                    {myName}
+                    {myName} titulo no home
                   </div>
                 )}
-                */}
                 {/**
                 <div className="text-white font-medium font-title text-2xl my-0 leading-none">
                   {myName}
