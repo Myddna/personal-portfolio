@@ -1,12 +1,10 @@
 import { FunctionComponent } from "react";
 import Link from "next/link";
 import NavItem from "./NavItem";
-import { useRouter } from "next/dist/client/router";
 import logo from "../../assets/logo.svg";
 import Image from "next/image";
 
 const Navigation: FunctionComponent = () => {
-  const router = useRouter();
   const myName = "Marta Moros Batlle";
 
   return (
@@ -26,15 +24,9 @@ const Navigation: FunctionComponent = () => {
               </a>
             </Link>
             <div className="flex flex-col">
-              {router.asPath === "/" ? (
-                <h1 className="my-0 leading-none text-2xl text-white font-medium font-title">
-                  {myName}
-                </h1>
-              ) : (
-                <div className="my-0 leading-none text-2xl text-white font-medium font-title">
-                  {myName}
-                </div>
-              )}
+              <div className="my-0 leading-none text-2xl text-white font-medium font-title">
+                {myName}
+              </div>
               <div className="text-purple-200 text-sm">
                 Software Engineer and Web Developer
               </div>
