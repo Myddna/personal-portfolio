@@ -7,8 +7,15 @@ import SimpleHighlight from "../components/ui/SimpleHighlight";
 import { yearsPassed } from "../utils/utils";
 import LatestProjects from "../components/LatestProjects";
 import TechStack from "../components/TechStack";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faReadme } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-const Home: NextPage = () => {
+type Props = {
+  repos?: any;
+};
+
+const Home: NextPage<Props> = ({ repos }) => {
   const yearsExperience = yearsPassed(
     new Date("2012-09-01 00:00:00"),
     new Date()
@@ -61,17 +68,33 @@ const Home: NextPage = () => {
         </p>
         <div className="flex space-x-4 justify-center mt-10">
           <Link href="/about">
-            <a className="btn btn-primary">Read more about me</a>
+            <a className="btn btn-primary">
+              <FontAwesomeIcon icon={faReadme} /> Read more about me
+            </a>
           </Link>
           <Link href="/contact">
-            <a className="btn btn-secondary">Contact</a>
+            <a className="btn btn-secondary">
+              <FontAwesomeIcon icon={faEnvelope} /> Contact
+            </a>
           </Link>
         </div>
       </TextBlock>
-      <LatestProjects className="shadow-sm" />
+      <LatestProjects className="shadow-sm" repos={repos} />
       {/*<TechStack className="shadow-sm bg-gray-50" />*/}
     </PageContainer>
   );
 };
+
+export async function getStaticProps() {
+  const res = await fetch("https://api.github.com/users/Myddna/repos");
+  const repos = await res.json();
+
+  return {
+    props: {
+      repos,
+    },
+    revalidate: 1,
+  };
+}
 
 export default Home;
