@@ -33,7 +33,7 @@ const Navigation: FunctionComponent = () => {
                     {myName}
                   </div>
                 )}
-                <div className="text-purple-200 text-sm">
+                <div className="text-purple-200">
                   Software Engineer and Web Developer
                 </div>
               </div>

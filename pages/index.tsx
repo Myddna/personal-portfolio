@@ -86,8 +86,12 @@ const Home: NextPage<Props> = ({ repos }) => {
 };
 
 export async function getStaticProps() {
+  console.log("fetching repos...");
+
   const res = await fetch("https://api.github.com/users/Myddna/repos");
   const repos = await res.json();
+
+  console.log(repos);
 
   return {
     props: {
