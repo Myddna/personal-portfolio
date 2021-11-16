@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
 import Link from "next/link";
+import { GetStaticProps } from "next";
 import PageContainer from "../components/structure/PageContainer";
 import Hero from "../components/Hero";
 import TextBlock from "../components/ui/TextBlock";
 import SimpleHighlight from "../components/ui/SimpleHighlight";
 import { yearsPassed } from "../utils/utils";
 import LatestProjects from "../components/LatestProjects";
-import TechStack from "../components/TechStack";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReadme } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
@@ -85,7 +85,7 @@ const Home: NextPage<Props> = ({ repos }) => {
   );
 };
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async (context) => {
   console.log("fetching repos...");
 
   const res = await fetch("https://api.github.com/users/Myddna/repos");
@@ -97,8 +97,8 @@ export async function getStaticProps() {
     props: {
       repos,
     },
-    revalidate: 1,
+    revalidate: 10,
   };
-}
+};
 
 export default Home;
