@@ -32,7 +32,7 @@ const Hero = () => {
               make
             </span>
             ,{" "}
-            <span className="decoration-clone bg-clip-text text-transparent bg-gradient-to-b from-green-300 to-blue-500">
+            <span className="decoration-clone bg-clip-text text-transparent bg-gradient-to-b from-blue-300 to-green-500">
               repeat
             </span>
           </div>
