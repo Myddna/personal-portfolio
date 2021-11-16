@@ -2,6 +2,8 @@ import { FunctionComponent } from "react";
 import Link from "next/link";
 import NavItem from "./NavItem";
 import { useRouter } from "next/dist/client/router";
+import logo from "../../assets/logo.svg";
+import Image from "next/image";
 
 const Navigation: FunctionComponent = () => {
   const router = useRouter();
@@ -13,18 +15,27 @@ const Navigation: FunctionComponent = () => {
       <div className="flex justify-between items-center flex-col sm:flex-row">
         <div className="flex flex-col">
           <Link href="/">
-            <a>
-              {router.asPath == "/" ? (
-                <h1 className="text-white font-medium font-title text-2xl my-0">
-                  {myName}
-                </h1>
-              ) : (
-                <div className="text-white font-medium font-title text-2xl my-0">
-                  {myName}
+            <a className="flex items-center space-x-4">
+              <Image
+                alt="Logo"
+                src={logo}
+                layout="fixed"
+                width={46}
+                height={46}
+              />
+              <div className="flex flex-col">
+                {router.asPath == "/" ? (
+                  <h1 className="text-white font-medium font-title text-2xl my-0">
+                    {myName}
+                  </h1>
+                ) : (
+                  <div className="text-white font-medium font-title text-2xl my-0">
+                    {myName}
+                  </div>
+                )}
+                <div className="text-purple-200 text-sm">
+                  Software Engineer and Web Developer
                 </div>
-              )}
-              <div className="text-purple-200 text-sm">
-                Software Engineer and Web Developer
               </div>
             </a>
           </Link>
