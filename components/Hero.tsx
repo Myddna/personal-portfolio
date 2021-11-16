@@ -1,8 +1,12 @@
 import Image from "next/image";
 import pic from "../assets/profilePic.webp";
-import bg from "../assets/bg.webp";
+//import bg from "../assets/bg.webp";
 
-const Hero = () => {
+type Props = {
+  bg: object;
+};
+
+const Hero = ({ bg }: Props) => {
   return (
     <div
       style={{

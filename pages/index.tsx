@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { GetStaticProps } from "next";
+import Head from "next/head";
 import PageContainer from "../components/structure/PageContainer";
 import Hero from "../components/Hero";
 import TextBlock from "../components/ui/TextBlock";
@@ -10,6 +11,7 @@ import LatestProjects from "../components/LatestProjects";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReadme } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import bg from "../assets/bg.webp";
 
 type Props = {
   repos?: any;
@@ -23,7 +25,11 @@ const Home: NextPage<Props> = ({ repos }) => {
 
   return (
     <PageContainer image="/screenshotPortfolio.png">
-      <Hero />
+      {/** Importing image here because we need to preload for optimization (and we can only add tags to Head from a page) */}
+      <Head>
+        <link rel="preload" as="image" href={bg.src} />
+      </Head>
+      <Hero bg={bg} />
       <TextBlock className="shadow-sm bg-gray-50">
         <h1 className="section-title">Hi! I’m Marta :)</h1>
         <p>
@@ -86,12 +92,8 @@ const Home: NextPage<Props> = ({ repos }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log("fetching repos...");
-
   const res = await fetch("https://api.github.com/users/Myddna/repos");
   const repos = await res.json();
-
-  console.log(repos);
 
   return {
     props: {

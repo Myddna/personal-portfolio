@@ -36,7 +36,6 @@ const ContactForm: FunctionComponent = () => {
       {
         loading: "Loading",
         success: (data) => {
-          console.log(data);
           setSubmitting(false);
           if (data.status === 200) {
             setSubmitting(false);
