@@ -135,6 +135,18 @@ const ContactForm: FunctionComponent = () => {
           }}
         />
       </div>
+      <div className="text-center mt-10 mb-4 d-none">
+        <input 
+          type="text" 
+          name="voightkampff" 
+          value={isABot}
+          style={{display: 'none'}} 
+          tabIndex={-1} 
+          autoComplete="off" 
+          onChange={(e) => {
+            setIsABot(e.target.value);
+          }} />
+      </div>
       <div className="text-center mt-10 mb-4">
         <button
           type="submit"
@@ -144,16 +156,7 @@ const ContactForm: FunctionComponent = () => {
           <FontAwesomeIcon icon={faPaperPlane} /> Send it!
         </button>
       </div>
-      <input 
-        type="text" 
-        name="voightkampff" 
-        value={isABot}
-        style={{display: 'none !important'}} 
-        tabIndex={-1} 
-        autoComplete="off" 
-        onChange={(e) => {
-          setIsABot(e.target.value);
-        }} />
+      
     </form>
   );
 };
