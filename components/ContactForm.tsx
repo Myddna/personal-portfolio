@@ -8,18 +8,38 @@ const ContactForm: FunctionComponent = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [isABot, setIsABot] = useState("");
 
   const sendMail = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    // Disabling the button
-    setSubmitting(true);
+    const messageStyles = {
+      style: {
+        minWidth: "250px",
+      },
+      success: {
+        duration: 5000,
+        icon: "💚",
+      },
+      error: {
+        duration: 9000,
+        icon: "😱",
+      },
+    };
 
     let mailData = {
       name,
       email,
       message,
     };
+
+    if(isABot !== ""){
+      toast.error('Cannot send your message', messageStyles);
+      return;
+    }
+
+    // Disabling the button
+    setSubmitting(true);
 
     // Configure the toaster with a promise
     const sendMessagePromise = fetch("/api/contact", {
@@ -34,7 +54,7 @@ const ContactForm: FunctionComponent = () => {
     toast.promise(
       sendMessagePromise,
       {
-        loading: "Loading",
+        loading: "Sending",
         success: (data) => {
           setSubmitting(false);
           if (data.status === 200) {
@@ -64,19 +84,7 @@ const ContactForm: FunctionComponent = () => {
           );
         },
       },
-      {
-        style: {
-          minWidth: "250px",
-        },
-        success: {
-          duration: 5000,
-          icon: "💚",
-        },
-        error: {
-          duration: 9000,
-          icon: "😱",
-        },
-      }
+      messageStyles
     );
   };
 
@@ -127,6 +135,18 @@ const ContactForm: FunctionComponent = () => {
           }}
         />
       </div>
+      <div className="text-center mt-10 mb-4 d-none">
+        <input 
+          type="text" 
+          name="voightkampff" 
+          value={isABot}
+          style={{display: 'none'}} 
+          tabIndex={-1} 
+          autoComplete="off" 
+          onChange={(e) => {
+            setIsABot(e.target.value);
+          }} />
+      </div>
       <div className="text-center mt-10 mb-4">
         <button
           type="submit"
@@ -136,6 +156,7 @@ const ContactForm: FunctionComponent = () => {
           <FontAwesomeIcon icon={faPaperPlane} /> Send it!
         </button>
       </div>
+      
     </form>
   );
 };
