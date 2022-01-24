@@ -28,13 +28,16 @@
     @apply font-semibold text-purple-900;
   }
   .btn {
-    @apply font-light text-white hover:text-white disabled:opacity-50 no-underline leading-none bg-gradient-to-b px-4 pt-2.5 pb-3 rounded;
+    @apply font-light text-white hover:text-white disabled:opacity-50 no-underline leading-none bg-gradient-to-b px-4 pt-2.5 pb-3 pl-5 pr-5 rounded;
   }
   .btn-primary {
     @apply btn from-purple-700 to-purple-900 hover:to-purple-700;
   }
   .btn-secondary {
     @apply btn from-yellow-400 to-yellow-600 hover:to-yellow-400;
+  }
+  .btn-discrete {
+    @apply btn from-purple-300 to-purple-500 hover:to-purple-300;
   }
   .form-group {
     @apply mb-4 flex items-baseline;
@@ -48,5 +51,14 @@
   }
   textarea {
     @apply w-full py-1 pl-2 border-b-2 border-gray-300 text-gray-500 focus:outline-none focus:ring focus:border-purple-300 focus:ring-purple-200 rounded-sm;
+  }
+}
+
+@layer utilities {
+  @media screen and (min-width: 1200px){
+    .post-image-full {
+      margin-left: -3rem;
+      margin-right: -3rem;
+    }
   }
 }
