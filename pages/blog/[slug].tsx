@@ -135,7 +135,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 
     const { data: posts } = response;
   
-    existingSlugs = posts.map(({attributes: { slug }}) => {
+    existingSlugs = posts.map(({attributes: { slug }}: any) => {
       return {
         params: { slug: slug }
       }
