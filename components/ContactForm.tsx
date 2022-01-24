@@ -31,6 +31,7 @@ const ContactForm: FunctionComponent = () => {
       name,
       email,
       message,
+      voightkampff: isABot,
     };
 
     if(isABot !== ""){
@@ -42,7 +43,7 @@ const ContactForm: FunctionComponent = () => {
     setSubmitting(true);
 
     // Configure the toaster with a promise
-    const sendMessagePromise = fetch("/api/contact", {
+    const sendMessagePromise = fetch("/api/send-contact-form", {
       method: "POST",
       headers: {
         Accept: "application/json, text/plain, */*",

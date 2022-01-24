@@ -74,7 +74,7 @@ const About: NextPage = () => {
         </div>
         <h2>There is more...</h2>
         <p>
-          I consider myself a quite{" "}
+          I consider myself quite a{" "}
           <SimpleHighlight>creative person</SimpleHighlight>. I’ve had{" "}
           <a href="https://dispersion.es" target="_blank" rel="noreferrer">
             a <em>crafty</em> personal blog

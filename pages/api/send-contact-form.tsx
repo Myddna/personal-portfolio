@@ -5,21 +5,35 @@ type Data = {
   message: string;
 };
 
+function validEmailformat(email: string) {
+    return /\S+@\S+\.\S+/.test(email);
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // Send myself the message. Only send the person contacting another message if
-  // the message was sent.
-  const { name, email, message } = req.body;
 
   try {
+    // Making it a little bit more difficult to spammers to use my form
+    const { name, email, message, voightkampff } = req.body;
+    if(name == undefined || email == undefined || message == undefined ||
+      name == "" || email == "" || message == "" || !validEmailformat(email)){
+      throw new Error('Invalid message');
+    }
+
+    if(voightkampff == undefined || voightkampff != ""){
+      throw new Error('You are not a HU-MAN!');
+    }
+
+    // Send myself the message. Only send the person contacting another message if
+    // the message was sent.
     const mailerResponse = await mailer.send(
       "ContactEmail",
       {
         name: name,
         email: email,
-        message: message,
+        message: message
       },
       { to: `Marta Moros <${process.env.MAIL_NOTIFICATION_ADDRESS}>` }
     );
@@ -29,7 +43,11 @@ export default async function handler(
       try {
         await mailer.send(
           "ThankYouEmail",
-          { name: name, message: message },
+          { 
+            name: name, 
+            email: email,
+            message: message
+          },
           { to: `${name} <${email}>` }
         );
       } catch (err) {
