@@ -1,5 +1,6 @@
 {
   "name": "mmb-portfolio",
+  "version": "1.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -13,12 +14,12 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.16",
     "next": "12",
-    "nodemailer": "^6.7.1",
-    "nodemailer-react": "^1.0.1",
+    "nodemailer": "^6.6.1",
+    "nodemailer-react": "github:myddna/nodemailer-react",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.1.1",
-    "react-rough-notation": "^1.0.1",
+    "react-rough-notation": "github:myddna/react-rough-notation",
     "react-social-icons": "^5.6.1"
   },
   "devDependencies": {
