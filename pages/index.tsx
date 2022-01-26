@@ -24,7 +24,7 @@ const Home: NextPage<Props> = ({ repos }) => {
   );
 
   return (
-    <PageContainer image="/screenshotPortfolio.png">
+    <PageContainer image={`${process.env.NEXT_PUBLIC_SITE_URL}/screenshotPortfolio.png`}>
       {/** Importing image here because we need to preload for optimization (and we can only add tags to Head from a page) */}
       <Head>
         <link rel="preload" as="image" href={bg.src} />

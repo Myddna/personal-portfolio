@@ -1,7 +1,6 @@
 import type { NextPage } from "next";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
 import PageContainer from "../components/structure/PageContainer";
 import { request, gql, batchRequests, BatchRequestDocument, Variables } from 'graphql-request';
 import { BlogPost, PostListPagination, processPagination, processPosts } from "../utils/posts";
@@ -29,7 +28,7 @@ const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) =
   }
   console.log(posts);
   return (
-    <PageContainer image="/screenshotPortfolio.png">
+    <PageContainer  image={`${process.env.NEXT_PUBLIC_SITE_URL}/screenshotPortfolio.png`}>
       <Head>
         <title>Blog {pageIndicator}</title>
       </Head>

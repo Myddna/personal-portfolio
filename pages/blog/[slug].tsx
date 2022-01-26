@@ -1,11 +1,16 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import PageContainer from "../../components/structure/PageContainer";
-import TextBlock from "../../components/ui/TextBlock";
-import { request, gql } from 'graphql-request';
-import { BlogPost, processPostSingle } from "../../utils/posts";
 import Image from "next/image";
+import { request, gql } from 'graphql-request';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow as style } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import PageContainer from "../../components/structure/PageContainer";
+import TextBlock from "../../components/ui/TextBlock";
+import { BlogPost, processPostSingle } from "../../utils/posts";
+import Link from "next/link";
 
 
 type Props = {
@@ -28,21 +33,70 @@ const Post: NextPage<Props> = ({ post }) => {
         />
     );
   }
+
+  let splitCatchphrase = catchphrase.split("\n").map(function(item, idx) {
+    return (
+        <p key={idx}>
+            {item}
+        </p>
+    )
+  });
+
   return (
-    <PageContainer title="Post">
+    <PageContainer 
+      title={ title }
+      description={ catchphrase }
+      image={ url }
+      ogType="article"
+      date={ postDate }
+      >
       <TextBlock>
         <h1>{ title }</h1>
         <div className="text-sm mb-3">
-          <FontAwesomeIcon icon={faClock} /> {postDate.toLocaleString()}
+          <FontAwesomeIcon icon={ faClock } /> { postDate.toLocaleString() }
         </div>
-        <div className="text-xl mt-10 mb-10 pt-7 pl-12 pb-7 border-l-4 border-yellow-200">
-          {catchphrase}
+        <div className="mt-10 mb-10 pt-7 pl-12 pb-5 border-l-4 border-yellow-200 text-2xl font-light leading-relaxed">
+          { splitCatchphrase }
         </div>
         <div className="mb-7 post-image-full">
           { imgElement }
         </div>
-        <div>
-          {text}
+        <div className="markdown">
+          <ReactMarkdown
+            /** Add remark plugin Gfm (for tables, among others...) */
+            remarkPlugins={[remarkGfm]}
+            /** 
+             * Processes the children, if it detects code marked 
+             * with a language, activates the syntax highlighter 
+             * component 
+            */
+            components={{
+              code({node, inline, className, children, ...props}) {
+                const langcode = /language-(\w+)/.exec(className || '')
+                return !inline && langcode ? (
+                  <SyntaxHighlighter
+                    style={style}
+                    language={langcode[1]}
+                    PreTag="div"
+                    {...props}
+                  >
+                    { children }
+                  </SyntaxHighlighter>
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                )
+              }
+            }}
+          >
+            {text}
+          </ReactMarkdown>
+        </div>
+        <div className="mt-20 mb-10 flex justify-center">
+          <Link href="/blog">
+            <a className="btn btn-secondary">Back to blog index</a>
+          </Link>
         </div>
       </TextBlock>
     </PageContainer>
@@ -97,7 +151,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 }
 
-export const getStaticPaths: GetStaticPaths = async (context) => {
+export const getStaticPaths: GetStaticPaths = async () => {
   // Blogs Data
   // GQL queries
   const SLUGS_QUERY = gql`
