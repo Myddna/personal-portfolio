@@ -13,7 +13,7 @@ type Props = {
   previewMode: boolean;
 };
 
-const Post: NextPage<Props> = ({ post, previewMode = false}) => {
+const Post: NextPage<Props> = ({ post }) => {
   const { title, publishedAt, catchphrase, text, featured: { url, alternativeText, width, height } }: BlogPost = post;
   const postDate = new Date(publishedAt);
   let imgElement = <></>;
@@ -23,13 +23,15 @@ const Post: NextPage<Props> = ({ post, previewMode = false}) => {
         alt={alternativeText} 
         width={width}
         height={height}
-        layout="responsive" />
+        layout="responsive" 
+        priority
+        />
     );
   }
   return (
     <PageContainer title="Post">
       <TextBlock>
-        <h1>{ post.title }</h1>
+        <h1>{ title }</h1>
         <div className="text-sm mb-3">
           <FontAwesomeIcon icon={faClock} /> {postDate.toLocaleString()}
         </div>
@@ -48,57 +50,39 @@ const Post: NextPage<Props> = ({ post, previewMode = false}) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  // Preview mode control
-  const previewMode = context.preview == false || context.preview == null ? 'LIVE' : 'PREVIEW';
   const slug = context.params?.slug;
+  
   // Query
   const QUERY = gql`
-  query($slug: String, $previewMode: PublicationState) {
-    posts(
-      publicationState: $previewMode
-      filters: { slug: { eq: $slug } }
-      pagination: { page: 1, pageSize: 1 }
-    ) {
-      data {
+  query GetPostBySlug($status: String = "published", $slug: String) {
+    posts(filter: {status: {_eq: $status}, slug: {_eq: $slug}}) {
+      id
+      title
+      slug
+      published_at
+      catchphrase
+      text
+      featured {
         id
-        attributes {
-          title, 
-          slug, 
-          publishedAt,
-          catchphrase,
-          text,
-          featured {
-            data {
-              attributes {
-                url
-                width
-                height
-                alternativeText
-              }
-            }
-          }
-        }
+        width
+        height
       }
     }
   }
   `;
 
   try {
-    const { posts: response } = await request(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, QUERY,
+    const { posts } = await request(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, QUERY,
       {
         slug: slug,
-        previewMode: previewMode,
       },
     );
-
-    const { data: post } = response;
   
-    const typedPost: BlogPost = processPostSingle(post[0]);
+    const typedPost: BlogPost = processPostSingle(posts[0]);
 
     return {
       props: {
         post: typedPost,
-        previewMode: previewMode
       },
     }
 
@@ -109,7 +93,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return {
     props: {
       post: [],
-      previewMode: previewMode
     },
   }
 }
@@ -118,24 +101,19 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   // Blogs Data
   // GQL queries
   const SLUGS_QUERY = gql`
-  query {
-    posts {
-      data {
-        attributes {
-          slug
-        }
-      }
+  query GetPostsSlugs($_eq: String = "published", $sort: [String] = ["-published_at"]) {
+    posts(filter: {status: {_eq: $_eq}}, sort: $sort) {
+      slug
     }
   }
-  `
+  `;
   let existingSlugs: Array<string> = [];
 
   try {
-    const { posts: response } = await request(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, SLUGS_QUERY);
-
-    const { data: posts } = response;
+    const { posts } = await request(
+      `${process.env.NEXT_PUBLIC_API_URL}/graphql`, SLUGS_QUERY);
   
-    existingSlugs = posts.map(({attributes: { slug }}: any) => {
+    existingSlugs = posts.map(({ slug }: { slug: string }) => {
       return {
         params: { slug: slug }
       }

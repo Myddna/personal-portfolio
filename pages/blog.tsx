@@ -3,8 +3,8 @@ import { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import PageContainer from "../components/structure/PageContainer";
-import { request, gql } from 'graphql-request';
-import { BlogPost, PostListPagination, processPosts } from "../utils/posts";
+import { request, gql, batchRequests, BatchRequestDocument, Variables } from 'graphql-request';
+import { BlogPost, PostListPagination, processPagination, processPosts } from "../utils/posts";
 import PostList from "../components/blog/PostList";
 import PostListPaginator from "../components/blog/PostListPagination";
 
@@ -21,14 +21,13 @@ const defaultPagination: PostListPagination = {
   total: 1,
 }
 
-const Blog: NextPage<Props> = ({
-  posts = [], pagination = defaultPagination, previewMode = false
-}) => {
+const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) => {
   let { page } = pagination;
   let pageIndicator = null;
   if (page > 1) {
     pageIndicator = <span>(page {page})</span>;
   }
+  console.log(posts);
   return (
     <PageContainer image="/screenshotPortfolio.png">
       <Head>
@@ -36,8 +35,17 @@ const Blog: NextPage<Props> = ({
       </Head>
       <div className="max-w-screen-lg px-4 pt-10 pb-16 mx-auto text-gray-500 text-lg">
         <h1>Blog {pageIndicator}</h1>
-        <PostList posts={posts} />
-        <PostListPaginator pagination={pagination} />
+        { posts.length > 0 && 
+          <>
+            <PostList posts={posts} />
+            <PostListPaginator pagination={pagination} />
+          </>
+        }
+        { posts.length == 0 && 
+          <div className="my-10 text-xl">
+            There are no posts available at this moment.
+          </div>
+        }
       </div>
     </PageContainer>
   );
@@ -45,67 +53,70 @@ const Blog: NextPage<Props> = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // Preview mode control
-  const previewMode = context.preview == false || context.preview == null ? 'LIVE' : 'PREVIEW';
-  const orderBy = previewMode ? 'updatedAt:desc' : 'publishedAt:desc';
   const pageNumber = Number(context.query.page) || 1;
+  const orderBy = ["-published_at"];
+  const state = 'published';
+  const pageSize = 2;
   // Query
   const QUERY = gql`
-    query($previewMode: PublicationState, $sort: String, $page: Int) {
-      posts(
-        publicationState: $previewMode
-        sort: [$sort]
-        pagination: { page: $page, pageSize: 4 }
-      ) {
-        data {
-          id
-          attributes {
-            title
-            slug
-            publishedAt
-            catchphrase
-            text
-            featured {
-              data {
-                attributes {
-                  url
-                  width
-                  height
-                  alternativeText
-                }
-              }
-            }
-          }
-        }
-        meta {
-          pagination {
-            page
-            pageSize
-            total
-            pageCount
-          }
-        }
+  query GetPostsForList(
+      $_eq: String = "published", 
+      $sort: [String] = ["-published_at"], 
+      $pageNumber: Int = 1,
+      $limit: Int = 2
+    ) {
+    posts(filter: {status: {_eq: $_eq}}, sort: $sort, page: $pageNumber, limit: $limit) {
+      id
+      title
+      slug
+      catchphrase
+      text
+      featured {
+        id
+        width
+        height
+      }
+      published_at
+      status
+    }
+  }
+  `;
+
+  const QUERY_TOTAL = gql`
+  query GetPostsForListTotal(
+      $_eq: String = "published", 
+    ) {
+    posts_aggregated(filter: {status: {_eq: $_eq}}) {
+      count {
+        id
       }
     }
+  }
   `;
 
   try {
-    const { posts: response } = await request(`${process.env.NEXT_PUBLIC_API_URL}/graphql`, QUERY,
-      {
-        previewMode: previewMode,
-        sort: orderBy,
-        page: pageNumber,
-      },
-    );
+    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/graphql`;
 
-    const { data: posts, meta: { pagination } } = response;
-
+    const { posts } = await request(endpoint, QUERY, {
+      _eq: state, 
+      sort: orderBy,
+      pageNumber: pageNumber,
+      limit: pageSize
+    });
     const typedPosts = processPosts(posts);
+
+    const { posts_aggregated } = await request(endpoint, QUERY_TOTAL, {_eq: state});
+    let pagination = {};
+    if(posts_aggregated.length){
+      const { count: { id: postsNumber }} = posts_aggregated[0];
+      pagination = processPagination(pageNumber, pageSize, postsNumber);
+    }
+    
 
     return {
       props: {
         posts: typedPosts,
         pagination: pagination,
-        previewMode: previewMode
       },
     }
 
@@ -117,7 +128,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     props: {
       posts: [],
       pagination: {},
-      previewMode: previewMode
     },
   }
 

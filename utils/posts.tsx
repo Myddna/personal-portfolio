@@ -24,54 +24,64 @@ export type PostListPagination = {
   pageCount: number;
 };
 
-export function processPosts(posts: any): Array<BlogPost> {
-   let typedPosts: Array<BlogPost> = posts.map(({
-     id, 
-     attributes: {title, slug, publishedAt, catchphrase, text, featured }
-    } : { id: any, attributes: any }) => {
-      const { url, alternativeText, width, height } = featured?.data?.attributes;
-      const thePost: BlogPost = {
-        id: id,
-        title: title,
-        slug: slug,
-        publishedAt: publishedAt,
-        catchphrase: catchphrase,
-        text: text,
-        featured: {
-          url: url,
-          alternativeText: alternativeText,
-          width: width,
-          height: height,
-        },
-      }
+const images_endpoint = `/assets`;
 
-      return thePost;
+export function processPosts(posts: any): Array<BlogPost> {
+  let typedPosts: Array<BlogPost> = posts.map((post: any) => {
+    const { id, title, slug, published_at, catchphrase, text, 
+      featured: { id: featured_id, width, height } } : any = post;
+
+    const thePost: BlogPost = {
+      id: id,
+      title: title,
+      slug: slug,
+      publishedAt: published_at,
+      catchphrase: catchphrase,
+      text: text,
+      featured: {
+        url: `${images_endpoint}/${featured_id}?key=featured-small`,
+        alternativeText: '',
+        width: 640,
+        height: 480, // this size comes from the preset featured-small
+      },
+    }
+
+    return thePost;
   })
 
   return typedPosts;
 }
 
-
 export function processPostSingle(post: any): BlogPost {
-  const {
-    id, 
-    attributes: {title, slug, publishedAt, catchphrase, text, featured }} : any = post;
-  let { url, alternativeText, width, height } = featured?.data?.attributes;
-  
+  const { id, title, slug, published_at, catchphrase, text, 
+    featured: { id: featured_id, width, height } } : any = post;
+    
   const thePost: BlogPost = {
     id: id,
     title: title,
     slug: slug,
-    publishedAt: publishedAt,
+    publishedAt: published_at,
     catchphrase: catchphrase,
     text: text,
     featured: {
-      url: url,
-      alternativeText: alternativeText,
-      width: width,
-      height: height,
+      url: `${images_endpoint}/${featured_id}?key=featured-big`,
+      alternativeText: '',
+      width: 1200,
+      height: 900,
     },
   }
 
   return thePost;
+}
+
+export function processPagination(
+  pageNumber: number, pageSize: number, postsNumber: number): PostListPagination {
+    const pagination: PostListPagination = {
+      page: pageNumber,
+      pageSize: pageSize,
+      total: postsNumber,
+      pageCount: pageSize > 0 ? Math.ceil(postsNumber / pageSize) : 1
+    }
+
+    return pagination;
 }

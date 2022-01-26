@@ -15,6 +15,6 @@ module.exports = {
     return config;
   },
   images: {
-    domains: ['localhost']
+    domains: ['localhost', 'faceofboe.martam.dev']
   }
 };
