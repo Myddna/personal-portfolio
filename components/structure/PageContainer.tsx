@@ -36,7 +36,7 @@ const PageContainer: FunctionComponent<Props> = ({
     metaTags.title += ` | ${metaTitleTail}`;
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`;
 
   return (
     <div className="page-container">
@@ -51,7 +51,7 @@ const PageContainer: FunctionComponent<Props> = ({
         <meta property="og:site_name" content="Marta Moros Batlle" />
         <meta property="og:description" content={metaTags.description} />
         <meta property="og:title" content={metaTags.title} />
-        <meta property="og:image" content={`${siteUrl}${metaTags.image}`} />
+        <meta property="og:image" content={`${metaTags.image}`} />
         {metaTags.dateModified && (
           <meta
             property="og:updated_time"
@@ -63,7 +63,7 @@ const PageContainer: FunctionComponent<Props> = ({
         <meta name="twitter:site" content="@myddna" />
         <meta name="twitter:title" content={metaTags.title} />
         <meta name="twitter:description" content={metaTags.description} />
-        <meta name="twitter:image" content={`${siteUrl}${metaTags.image}`} />
+        <meta name="twitter:image" content={`${metaTags.image}`} />
         {metaTags.ogType == "article" && metaTags.date && (
           <meta
             property="article:published_time"

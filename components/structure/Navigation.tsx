@@ -34,6 +34,7 @@ const Navigation: FunctionComponent = () => {
           </div>
         </div>
         <nav className="flex space-x-4 text-white">
+          <NavItem href="/blog" text="Blog" />
           <NavItem href="/about" text="About me" />
           <NavItem href="/contact" text="Contact" />
         </nav>
