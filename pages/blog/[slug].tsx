@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow as style } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import PageContainer from "../../components/structure/PageContainer";
 import TextBlock from "../../components/ui/TextBlock";
@@ -14,10 +14,14 @@ import Link from "next/link";
 
 import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
 import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
+import typescript from 'react-syntax-highlighter/dist/cjs/languages/prism/typescript';
+import tsx from 'react-syntax-highlighter/dist/cjs/languages/prism/tsx';
 import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
 
 SyntaxHighlighter.registerLanguage('javascript', js);
 SyntaxHighlighter.registerLanguage('jsx', jsx);
+SyntaxHighlighter.registerLanguage('typescript', typescript);
+SyntaxHighlighter.registerLanguage('tsx', tsx);
 SyntaxHighlighter.registerLanguage('css', css);
 
 type Props = {
