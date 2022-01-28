@@ -1,5 +1,6 @@
 import { ReactElement } from "react";
 import { Mailer } from "nodemailer-react";
+import type { EmailConfig } from "nodemailer-react";
 
 type Email = (props: object) => {
   subject: string;
@@ -7,16 +8,23 @@ type Email = (props: object) => {
 };
 
 // Setting up nodemailer-react
-const transport = {
-  host: process.env.MAIL_HOST,
-  port: process.env.MAIL_PORT,
-  secure: process.env.MAIL_SECURE,
-  auth: { user: process.env.MAIL_USERNAME, pass: process.env.MAIL_PASSWORD },
-};
-
-const defaults = {
-  from: `Marta Moros Batlle <${process.env.MAIL_USERNAME}>`,
-};
+const mailerConfig: EmailConfig = {
+  transport: {
+    host: process.env.MAIL_HOST || '',
+    port: Number(process.env.MAIL_PORT),
+    secure: Boolean(process.env.MAIL_SECURE),
+    auth: { 
+      user: process.env.MAIL_USERNAME || '', 
+      pass: process.env.MAIL_PASSWORD || ''
+    },
+  },
+  defaults: {
+    from: { 
+      name: 'Marta Moros Batlle', 
+      address: process.env.MAIL_USERNAME  || ''
+    },
+  },
+}
 
 type MailParams = {
   name: string;
@@ -85,6 +93,6 @@ export const ThankYouEmail = ({ name, message }: MailParams) => {
 };
 
 export const mailer = Mailer(
-  { transport, defaults },
+  mailerConfig,
   { ContactEmail, ThankYouEmail }
 );
