@@ -36,7 +36,7 @@ const PageContainer: FunctionComponent<Props> = ({
     metaTags.title += ` | ${metaTitleTail}`;
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_VERCEL_URL;
 
   return (
     <div className="page-container">
