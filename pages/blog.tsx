@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import PageContainer from "../components/structure/PageContainer";
-import { request, gql, batchRequests, BatchRequestDocument, Variables } from 'graphql-request';
+import { request, gql } from 'graphql-request';
 import { BlogPost, PostListPagination, processPagination, processPosts } from "../utils/posts";
 import PostList from "../components/blog/PostList";
 import PostListPaginator from "../components/blog/PostListPagination";
@@ -20,24 +20,17 @@ const defaultPagination: PostListPagination = {
   total: 1,
 }
 
-const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) => {
-  console.log('blog.tsx');
-  let { page } = pagination;
-  let pageIndicator = null;
-  if (page > 1) {
-    pageIndicator = <span>(page {page})</span>;
-  }
-  
+const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) => {  
   return (
     <PageContainer  image={`${process.env.NEXT_PUBLIC_SITE_URL}/screenshotPortfolio.png`}>
       <Head>
-        <title>Blog {pageIndicator}</title>
+        <title>Blog</title>
       </Head>
       <div className="max-w-screen-lg px-4 pt-10 pb-16 mx-auto text-gray-500 text-lg">
-        <h1>Blog {pageIndicator}</h1>
+        <h1>Blog</h1>
         { posts.length > 0 && 
           <>
-            <PostList posts={posts} />
+            <PostList posts={posts} highlightFirst={true} />
             <PostListPaginator pagination={pagination} />
           </>
         }
@@ -51,12 +44,12 @@ const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) =
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   // Preview mode control
-  const pageNumber = Number(context.query.page) || 1;
+  const pageNumber = 1;
   const orderBy = ["-published_at"];
   const state = 'published';
-  const pageSize = 5;
+  const pageSize = 3;
   // Query
   const QUERY = gql`
   query GetPostsForList(

@@ -28,11 +28,8 @@ type BlogArchivePageSlug = {
 
 const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) => {
   let { page } = pagination;
-  let pageIndicator = null;
-  if (page > 1) {
-    pageIndicator = <span>(page {page})</span>;
-  }
-  
+  const pageIndicator = <span>(page {page})</span>;
+
   return (
     <PageContainer  image={`${process.env.NEXT_PUBLIC_SITE_URL}/screenshotPortfolio.png`}>
       <Head>
@@ -57,7 +54,7 @@ const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) =
 };
 
 const state = 'published';
-const pageSize = 5;
+const pageSize = 3;
 
 export const getStaticProps: GetStaticProps = async (context) => {
   console.log('[page].tsx');
