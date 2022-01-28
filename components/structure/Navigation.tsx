@@ -24,7 +24,7 @@ const Navigation: FunctionComponent = () => {
               </a>
             </Link>
             <div className="flex flex-col">
-              <div className="my-0 leading-none text-2xl text-white font-medium font-title">
+              <div className="my-0 leading-none text-2xl text-white font-semibold font-title">
                 {myName}
               </div>
               <div className="text-purple-200 text-sm">

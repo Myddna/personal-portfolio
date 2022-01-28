@@ -13,7 +13,7 @@ const RepoInfo: FunctionComponent<Props> = ({ repo }: Props) => {
       <div className="mb-3">
         <a
           href={repo.html_url}
-          className="no-underline font-title"
+          className="no-underline font-title font-semibold"
           target="_blank"
           rel="noreferrer"
         >

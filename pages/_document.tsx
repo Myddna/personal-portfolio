@@ -24,7 +24,7 @@ class MyDocument extends Document {
             crossOrigin="anonymous"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;500&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;600&display=swap"
             rel="stylesheet"
           />
           {/** Favicon */}

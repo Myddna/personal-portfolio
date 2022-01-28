@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        title: ['"Zen Maru Gothic"'],
+        title: ['"Quicksand"'],
       },
     },
   },
