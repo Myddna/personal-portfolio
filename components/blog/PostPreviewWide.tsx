@@ -33,7 +33,7 @@ const PostPreviewWide: FunctionComponent<Props> = ({ post }: Props) => {
           </a>
         </Link>
       </div>
-      <div className="flex flex-col justify-center p-4">
+      <div className="flex flex-col justify-center p-4 md:p-8">
         <div>
           <h2 className="mt-0 mb-2 text-4xl">
             <Link href={`/blog/${slug}`}>

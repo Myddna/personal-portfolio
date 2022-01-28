@@ -18,8 +18,8 @@ const PostList: FunctionComponent<Props> = ({ posts = [], highlightFirst = false
       {posts.map((post: BlogPost, idx: number ) => {
           if(idx == 0 && highlightFirst) {
             return (
-              <div className="md:col-span-2">
-                <PostPreviewWide key={post.id} post={post} />
+              <div className="md:col-span-2" key={post.id}>
+                <PostPreviewWide post={post} />
               </div>
             )
           } else {
