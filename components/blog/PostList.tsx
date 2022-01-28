@@ -19,21 +19,21 @@ const PostList: FunctionComponent<Props> = ({ posts = [] }: Props) => {
           imgElement = (
             <Image src={`${process.env.NEXT_PUBLIC_API_URL}${url}`} 
               alt={alternativeText} 
-              className="object-cover" width={320} height={240} 
+              className="object-cover rounded" width={320} height={240} 
               layout="responsive" />
           );
         }
         const postDate = new Date(publishedAt);
         return (
-          <article className="rounded shadow p-4 mb-8 flex flex-col" key={id}>
-            <div className="w-full mb-3">
+          <article className="rounded shadow mb-8 flex flex-col" key={id}>
+            <div className="w-full">
               <Link href={`/blog/${slug}`}>
                 <a className="relative">
                   {imgElement ?? imgElement}
                 </a>
               </Link>
             </div>
-            <div className="flex flex-col justify-between h-full">
+            <div className="flex flex-col justify-between h-full p-4">
               <div>
                 <h2 className="mt-0 mb-2">
                   <Link href={`/blog/${slug}`}>
@@ -42,10 +42,10 @@ const PostList: FunctionComponent<Props> = ({ posts = [] }: Props) => {
                     </a>
                   </Link>
                 </h2>
-                <div className="text-sm mb-3">
+                <div className="text-sm mb-4">
                   <FontAwesomeIcon icon={faClock} /> {postDate.toLocaleString()}
                 </div>
-                <div className="text-lg mb-4">
+                <div className="text-lg mb-6">
                   {catchphrase}
                 </div>
               </div>

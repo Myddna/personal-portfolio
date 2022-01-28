@@ -1,11 +1,11 @@
 import type { NextPage } from "next";
-import { GetServerSideProps } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import Head from "next/head";
-import PageContainer from "../components/structure/PageContainer";
-import { request, gql, batchRequests, BatchRequestDocument, Variables } from 'graphql-request';
-import { BlogPost, PostListPagination, processPagination, processPosts } from "../utils/posts";
-import PostList from "../components/blog/PostList";
-import PostListPaginator from "../components/blog/PostListPagination";
+import PageContainer from "../../../components/structure/PageContainer";
+import { request, gql } from 'graphql-request';
+import { BlogPost, PostListPagination, processPagination, processPosts } from "../../../utils/posts";
+import PostList from "../../../components/blog/PostList";
+import PostListPaginator from "../../../components/blog/PostListPagination";
 
 type Props = {
   posts: Array<BlogPost>;
@@ -20,8 +20,13 @@ const defaultPagination: PostListPagination = {
   total: 1,
 }
 
+type BlogArchivePageSlug = {
+  params: {
+    page: string;
+  };
+};
+
 const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) => {
-  console.log('blog.tsx');
   let { page } = pagination;
   let pageIndicator = null;
   if (page > 1) {
@@ -51,12 +56,15 @@ const Blog: NextPage<Props> = ({ posts = [], pagination = defaultPagination }) =
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+const state = 'published';
+const pageSize = 5;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  console.log('[page].tsx');
   // Preview mode control
-  const pageNumber = Number(context.query.page) || 1;
+  const pageNumber = context.params?.page ? Number(context.params?.page[0]) : 1;
   const orderBy = ["-published_at"];
-  const state = 'published';
-  const pageSize = 5;
+
   // Query
   const QUERY = gql`
   query GetPostsForList(
@@ -111,7 +119,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       const { count: { id: postsNumber }} = posts_aggregated[0];
       pagination = processPagination(pageNumber, pageSize, postsNumber);
     }
-    
 
     return {
       props: {
@@ -132,5 +139,54 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
 };
+
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // Pages Data
+  // GQL queries
+  const QUERY_TOTAL = gql`
+  query GetPostsForListTotal(
+      $_eq: String = "published", 
+    ) {
+    posts_aggregated(filter: {status: {_eq: $_eq}}) {
+      count {
+        id
+      }
+    }
+  }
+  `;
+
+  let allPages: Array<string> = [];
+  let pageNumberSlugs: Array<BlogArchivePageSlug> = [];
+
+  try {
+    const { posts_aggregated } = await request(
+      `${process.env.NEXT_PUBLIC_API_URL}/graphql`, QUERY_TOTAL, {_eq: state});
+    
+    let postsNumber;
+
+    if(posts_aggregated.length){
+      const { count: { id: theNumber }} = posts_aggregated[0];
+      postsNumber = theNumber;
+    }
+
+    for(let i = 2; i <= Math.ceil(postsNumber/pageSize); i++) {
+      allPages.push(`${i}`);
+    }
+
+    pageNumberSlugs = allPages.map((pageNumber: string) => {
+      return {
+        params: { page: pageNumber }
+      }
+    });
+
+  } catch(error) {
+    console.log(error);
+  }  
+  return {
+      paths: pageNumberSlugs,
+      fallback: false
+  };
+}
 
 export default Blog;

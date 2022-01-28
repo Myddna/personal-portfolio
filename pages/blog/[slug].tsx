@@ -18,6 +18,12 @@ type Props = {
   previewMode: boolean;
 };
 
+type BlogPostSlug = {
+  params: {
+    slug: string;
+  };
+};
+
 const Post: NextPage<Props> = ({ post }) => {
   const { title, publishedAt, catchphrase, text, featured: { url, alternativeText, width, height } }: BlogPost = post;
   const postDate = new Date(publishedAt);
@@ -161,7 +167,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     }
   }
   `;
-  let existingSlugs: Array<string> = [];
+
+  let existingSlugs: Array<BlogPostSlug> = [];
 
   try {
     const { posts } = await request(
