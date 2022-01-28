@@ -27,10 +27,11 @@ type BlogPostSlug = {
 const Post: NextPage<Props> = ({ post }) => {
   const { title, publishedAt, catchphrase, text, featured: { url, alternativeText, width, height } }: BlogPost = post;
   const postDate = new Date(publishedAt);
+  const fullImageUrl = `${process.env.NEXT_PUBLIC_API_URL}${url}`;
   let imgElement = <></>;
   if (url !== undefined) {
     imgElement = (
-      <Image src={`${process.env.NEXT_PUBLIC_API_URL}${url}`} 
+      <Image src={fullImageUrl} 
         alt={alternativeText} 
         width={width}
         height={height}
@@ -52,7 +53,7 @@ const Post: NextPage<Props> = ({ post }) => {
     <PageContainer 
       title={ title }
       description={ catchphrase }
-      image={ url }
+      image={ fullImageUrl }
       ogType="article"
       date={ postDate }
       >
