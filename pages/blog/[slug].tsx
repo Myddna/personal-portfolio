@@ -5,13 +5,20 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from 'remark-gfm';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow as style } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import PageContainer from "../../components/structure/PageContainer";
 import TextBlock from "../../components/ui/TextBlock";
 import { BlogPost, processPostSingle } from "../../utils/posts";
 import Link from "next/link";
 
+import js from 'react-syntax-highlighter/dist/cjs/languages/prism/javascript';
+import jsx from 'react-syntax-highlighter/dist/cjs/languages/prism/jsx';
+import css from 'react-syntax-highlighter/dist/cjs/languages/prism/css';
+
+SyntaxHighlighter.registerLanguage('javascript', js);
+SyntaxHighlighter.registerLanguage('jsx', jsx);
+SyntaxHighlighter.registerLanguage('css', css);
 
 type Props = {
   post: BlogPost;

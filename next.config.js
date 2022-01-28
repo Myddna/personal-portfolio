@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const path = require("path");
-module.exports = {
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
+module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   output: { path: path.resolve(__dirname, "static") },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
@@ -17,4 +21,4 @@ module.exports = {
   images: {
     domains: ['localhost', 'faceofboe.martam.dev']
   }
-};
+});
