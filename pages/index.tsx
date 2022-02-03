@@ -99,8 +99,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       repos,
     },
-    // 6 hours -> to seconds
-    revalidate: 21600,
+    // 1min
+    revalidate: 60,
   };
 };
 
