@@ -21,7 +21,7 @@ const About: NextPage = () => {
       <TextBlock>
         <h1>Who am I?</h1>
         <p>
-          I’m a{" "}
+          I&apos;m a{" "}
           <SimpleHighlight>
             Software Engineer/Web Developer with {yearsExperience} years of
             experience
@@ -29,8 +29,8 @@ const About: NextPage = () => {
           working as a Full Stack Developer.{" "}
         </p>
         <p>
-          So far, I’ve worked with technologies such as Drupal, Symfony (PHP
-          Based), SCSS, LESS, Javascript, and relational databases. I’m currently
+          So far, I&apos;ve worked with technologies such as Drupal, Symfony (PHP
+          Based), SCSS, LESS, Javascript, and relational databases. I&apos;m currently
           interested in{" "}
           <SimpleHighlight>
             shifting my focus towards current Frontend Development technologies
@@ -38,7 +38,7 @@ const About: NextPage = () => {
           (React, Nextjs, Gatsby, …).{" "}
         </p>
         <p>
-          I’ve worked on several projects, including: custom CRM and ERP systems
+          I&apos;ve worked on several projects, including: custom CRM and ERP systems
           for small and medium sized companies, e-commerce implementations,
           online education platforms, marketing websites, and shopping mall
           websites.
@@ -54,11 +54,11 @@ const About: NextPage = () => {
             , always with users in mind.{" "}
           </li>
           <li>
-            I’m not an expert in <SimpleHighlight>UX</SimpleHighlight> but I’m
+            I&apos;m not an expert in <SimpleHighlight>UX</SimpleHighlight> but I&apos;m
             interested in learning more about it.
           </li>
           <li>
-            Although I’m not a professional designer, I enjoy doing it on my
+            Although I&apos;m not a professional designer, I enjoy doing it on my
             personal projects.{" "}
           </li>
         </ul>
@@ -75,7 +75,7 @@ const About: NextPage = () => {
         <h2>There is more...</h2>
         <p>
           I consider myself quite a{" "}
-          <SimpleHighlight>creative person</SimpleHighlight>. I’ve had{" "}
+          <SimpleHighlight>creative person</SimpleHighlight>. I&apos;ve had{" "}
           a <em>crafty</em> personal blog
           {" "}
           for many years, before even starting to study computer science (and
@@ -86,7 +86,7 @@ const About: NextPage = () => {
           with some friends.
         </p>
         <p>
-          I've been interested on Calligraphy since 2015, and that’s
+          I&apos;ve been interested on Calligraphy since 2015, and that&apos;s
           the reason behind two of my first React-based projects:
         </p>
         <ul>
@@ -111,7 +111,7 @@ const About: NextPage = () => {
               Qué demonios escribo
             </a>
             : Random quotes selector made with Gatsby v4, some days before the
-            v4’s release, to test Contentful integration. (Gatsby, custom styles)
+            v4&apos;s release, to test Contentful integration. (Gatsby, custom styles)
           </li>
         </ul>
         <p>After that:</p>
@@ -120,7 +120,7 @@ const About: NextPage = () => {
           <li>Front end implementation for a <SimpleHighlight>podcast management 
             tool, codename Jarvis</SimpleHighlight>, not yet released (React, custom styles).</li>
         </ul>
-        <p>I’m also interested in painting (gouache, watercolor, acrylic),
+        <p>I&apos;m also interested in painting (gouache, watercolor, acrylic),
           tropical plants, photography, reading, my <em>doge</em>, videogames...
         </p>
       </TextBlock>
