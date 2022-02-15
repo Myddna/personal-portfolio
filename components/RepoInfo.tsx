@@ -8,7 +8,7 @@ type Props = {
 };
 
 const RepoInfo: FunctionComponent<Props> = ({ repo }: Props) => {
-  const updatedAt = DateTime.fromISO(repo.updated_at);
+  const pushedAt = DateTime.fromISO(repo.pushed_at);
   return (
     <div className="rounded shadow p-4">
       <div className="mb-3">
@@ -24,7 +24,7 @@ const RepoInfo: FunctionComponent<Props> = ({ repo }: Props) => {
       <div className="mb-3">{repo.description}</div>
       <div className="text-sm">
         <span className="sr-only">Last update</span>
-        <FontAwesomeIcon icon={faClock} /> {updatedAt.setLocale('es').toLocaleString(DateTime.DATETIME_SHORT)}
+        <FontAwesomeIcon icon={faClock} /> {pushedAt.setLocale('es').toLocaleString(DateTime.DATETIME_SHORT)}
       </div>
     </div>
   );

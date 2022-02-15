@@ -16,10 +16,10 @@ const LatestProjects: FunctionComponent<Props> = ({
   const repoList =
     repos &&
     repos
-      // Sort by recently updated
+      // Sort by recently pushed
       .sort((a: any, b: any) => {
-        const dateA = new Date(a.updated_at);
-        const dateB = new Date(b.updated_at);
+        const dateA = new Date(a.pushed_at);
+        const dateB = new Date(b.pushed_at);
         if (dateA < dateB) {
           return 1;
         } else if (dateA > dateB) {
@@ -28,7 +28,7 @@ const LatestProjects: FunctionComponent<Props> = ({
           return 0;
         }
       })
-      // Keep the latest 3 updated repos
+      // Keep the latest 3 pushed repos
       .slice(0, 3)
       // Generate the cards
       .map((repo: any, idx: number) => {
