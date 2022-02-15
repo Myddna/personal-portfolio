@@ -11,7 +11,7 @@ import LatestProjects from "../components/LatestProjects";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReadme } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import bg from "../assets/bg.webp";
+import bg from "../assets/bg_v2.webp";
 
 type Props = {
   repos?: any;
@@ -99,8 +99,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       repos,
     },
-    // 1min
-    revalidate: 60,
+    revalidate: 60
   };
 };
 

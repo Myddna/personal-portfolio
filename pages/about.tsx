@@ -30,7 +30,7 @@ const About: NextPage = () => {
         </p>
         <p>
           So far, I’ve worked with technologies such as Drupal, Symfony (PHP
-          Based), SCSS, Javascript, and relational databases. I’m currently
+          Based), SCSS, LESS, Javascript, and relational databases. I’m currently
           interested in{" "}
           <SimpleHighlight>
             shifting my focus towards current Frontend Development technologies
@@ -76,9 +76,8 @@ const About: NextPage = () => {
         <p>
           I consider myself quite a{" "}
           <SimpleHighlight>creative person</SimpleHighlight>. I’ve had{" "}
-          <a href="https://dispersion.es" target="_blank" rel="noreferrer">
-            a <em>crafty</em> personal blog
-          </a>{" "}
+          a <em>crafty</em> personal blog
+          {" "}
           for many years, before even starting to study computer science (and
           that was some time ago). I also maintain a{" "}
           <a href="https://desvania.es" target="_blank" rel="noreferrer">
@@ -87,7 +86,7 @@ const About: NextPage = () => {
           with some friends.
         </p>
         <p>
-          In the last few years I became interested on Calligraphy, and that’s
+          I've been interested on Calligraphy since 2015, and that’s
           the reason behind two of my first React-based projects:
         </p>
         <ul>
@@ -100,7 +99,7 @@ const About: NextPage = () => {
             >
               CaliLíneas
             </a>
-            : A Calligraphy guidelines generator
+            : A Calligraphy guidelines generator (React, Bootstrap)
           </li>
           <li>
             ✍️{" "}
@@ -111,16 +110,21 @@ const About: NextPage = () => {
             >
               Qué demonios escribo
             </a>
-            : Random quotes selector made with Gatsby v4 (some days before the
-            v4’s release)
+            : Random quotes selector made with Gatsby v4, some days before the
+            v4’s release, to test Contentful integration. (Gatsby, custom styles)
           </li>
         </ul>
-        <p>
-          I’m also interested in painting (gouache, watercolor, acrylic),
+        <p>After that:</p>
+        <ul>
+          <li><SimpleHighlight>This portfolio website</SimpleHighlight> (NextJS, Tailwinds CSS)</li>
+          <li>Front end implementation for a <SimpleHighlight>podcast management 
+            tool, codename Jarvis</SimpleHighlight>, not yet released (React, custom styles).</li>
+        </ul>
+        <p>I’m also interested in painting (gouache, watercolor, acrylic),
           tropical plants, photography, reading, my <em>doge</em>, videogames...
         </p>
       </TextBlock>
-    </PageContainer>
+    </PageContainer >
   );
 };
 
