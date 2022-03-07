@@ -93,7 +93,7 @@ const About: NextPage = () => {
           <li>
             🪶{" "}
             <a
-              href="https://calilineas.quedemoniosescribo.art"
+              href="https://calilineas.martam.dev"
               target="_blank"
               rel="noreferrer"
             >
@@ -104,7 +104,7 @@ const About: NextPage = () => {
           <li>
             ✍️{" "}
             <a
-              href="https://quedemoniosescribo.art"
+              href="https://quedemoniosescribo.martam.dev"
               target="_blank"
               rel="noreferrer"
             >
