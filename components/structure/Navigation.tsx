@@ -12,16 +12,16 @@ const Navigation: FunctionComponent = () => {
       <div className="flex justify-between items-center flex-col sm:flex-row">
         <div className="flex flex-col">
           <div className="flex items-center space-x-4">
-            <Link href="/">
-              <a title="Go to homepage">
-                <Image
-                  alt="Logo"
-                  src={logo}
-                  layout="fixed"
-                  width={46}
-                  height={46}
-                />
-              </a>
+            <Link href="/" title="Go to homepage">
+
+              <Image
+                alt="Logo"
+                src={logo}
+                layout="fixed"
+                width={46}
+                height={46}
+              />
+
             </Link>
             <div className="flex flex-col">
               <div className="my-0 leading-none text-2xl text-white font-semibold font-title">

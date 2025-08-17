@@ -66,10 +66,10 @@ const About: NextPage = () => {
           <a className="btn btn-primary" href={resumePDF}>
             <FontAwesomeIcon icon={faFileDownload} /> Download my resume
           </a>
-          <Link href="/contact">
-            <a className="btn btn-secondary">
-              <FontAwesomeIcon icon={faEnvelope} /> Get in touch
-            </a>
+          <Link href="/contact" className="btn btn-secondary">
+
+            <FontAwesomeIcon icon={faEnvelope} />Get in touch
+                        
           </Link>
         </div>
         <h2>There is more...</h2>

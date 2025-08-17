@@ -13,13 +13,13 @@ const PostListPaginator: FunctionComponent<Props> = ({ pagination: { page, pageC
   if(page == 1){
     previous = <span className="btn text-gray-600 hover:text-gray-600">Previous</span>;
   } else if(page == 2){
-    previous = <Link href={`/blog`}><a className="btn btn-primary">Previous</a></Link>;
+    previous = <Link href={`/blog`} className="btn btn-primary">Previous</Link>;
   } else if(page > 1){
-    previous = <Link href={`/blog/archive/${page - 1}`}><a className="btn btn-primary">Previous</a></Link>;
+    previous = <Link href={`/blog/archive/${page - 1}`} className="btn btn-primary">Previous</Link>;
   }
 
   if(page < pageCount) {
-    next = <Link href={`/blog/archive/${page + 1}`}><a className="btn btn-primary">Next</a></Link>;
+    next = <Link href={`/blog/archive/${page + 1}`} className="btn btn-primary">Next</Link>;
   } else if(page == pageCount) {
     next = <span className="btn text-gray-600 hover:text-gray-600">Next</span>;
   }

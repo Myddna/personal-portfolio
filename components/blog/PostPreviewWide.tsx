@@ -27,19 +27,19 @@ const PostPreviewWide: FunctionComponent<Props> = ({ post }: Props) => {
   return (
     <article className="rounded shadow mb-8 grid grid-cols-1 md:grid-cols-2" key={id}>
       <div className="w-full flex flex-col justify-center">
-        <Link href={`/blog/${slug}`}>
-          <a className="relative">
-            {imgElement ?? imgElement}
-          </a>
+        <Link href={`/blog/${slug}`} className="relative">
+
+          {imgElement ?? imgElement}
+
         </Link>
       </div>
       <div className="flex flex-col justify-center p-4 md:p-8">
         <div>
           <h2 className="mt-0 mb-2 text-4xl">
-            <Link href={`/blog/${slug}`}>
-              <a className="no-underline">
-                {title}
-              </a>
+            <Link href={`/blog/${slug}`} className="no-underline">
+
+              {title}
+
             </Link>
           </h2>
           <div className="text-sm mb-4">
@@ -50,15 +50,15 @@ const PostPreviewWide: FunctionComponent<Props> = ({ post }: Props) => {
           </div>
         </div>
         <div>
-          <Link href={`/blog/${slug}`}>
-            <a className="btn btn-secondary inline-block">
+          <Link href={`/blog/${slug}`} className="btn btn-secondary inline-block">
+            
               Read more
-            </a>
+            
           </Link>
         </div>
       </div>
     </article>
-  )
+  );
 }
 
 export default PostPreviewWide;
