@@ -33,9 +33,7 @@ const LatestProjects: FunctionComponent<Props> = ({
       // Generate the cards
       .map((repo: any, idx: number) => {
         return (
-          <RepoInfo key={idx} repo={repo}>
-            {repo.id}
-          </RepoInfo>
+          <RepoInfo key={idx} repo={repo} />
         );
       });
 

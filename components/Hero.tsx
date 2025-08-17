@@ -1,5 +1,4 @@
-import Image from "next/image";
-import pic from "../assets/profilePic.webp";
+import { StaticImageData } from "next/image"
 
 type Props = {
   bg: StaticImageData;

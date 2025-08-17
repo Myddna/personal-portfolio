@@ -1,21 +1,16 @@
 import { FunctionComponent, ReactNode } from "react";
-import { RoughNotation } from "react-rough-notation";
 
 type Props = {
-  children?: ReactNode;
+  children: ReactNode
 };
 
-const SimpleHighlight: FunctionComponent = ({ children }: Props) => {
+const SimpleHighlight: FunctionComponent<Props> = ({ children }) => {
   return (
-    <RoughNotation
-      type="highlight"
-      show={true}
-      animate={false}
-      multiline={true}
-      color="#e8ff65a7"
+    <mark
+      style={{ "background": "linear-gradient(\n  -100deg,\n  hsla(48,92%,75%,.3),\n  hsla(48,92%,75%,.7) 95%,\n  hsla(48,92%,75%,.1)\n  )", "borderRadius": "1em 0", "padding": ".3em" }}
     >
       {children}
-    </RoughNotation>
+    </mark >
   );
 };
 
