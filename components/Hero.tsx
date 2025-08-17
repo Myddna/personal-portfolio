@@ -1,5 +1,4 @@
-import Image from "next/image";
-import pic from "../assets/profilePic.webp";
+import { StaticImageData } from "next/legacy/image"
 
 type Props = {
   bg: StaticImageData;
@@ -29,7 +28,7 @@ const Hero = ({ bg }: Props) => {
         </div>
         */}
         <div>
-          <div className="font-title font-light text-5xl sm:text-7xl text-gray-600">
+          <div className="font-light text-5xl sm:text-7xl text-gray-600">
             <span className="decoration-clone bg-clip-text text-transparent bg-gradient-to-b from-yellow-300 to-red-500">
               think
             </span>

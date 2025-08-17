@@ -73,15 +73,15 @@ const Home: NextPage<Props> = ({ repos }) => {
           on my personal projects.{" "}
         </p>
         <div className="flex space-x-4 justify-center mt-10">
-          <Link href="/about">
-            <a className="btn btn-primary">
-              <FontAwesomeIcon icon={faReadme} /> Read more about me
-            </a>
+          <Link href="/about" className="btn btn-primary">
+
+            <FontAwesomeIcon icon={faReadme} />Read more about me
+                        
           </Link>
-          <Link href="/contact">
-            <a className="btn btn-secondary">
-              <FontAwesomeIcon icon={faEnvelope} /> Contact
-            </a>
+          <Link href="/contact" className="btn btn-secondary">
+
+            <FontAwesomeIcon icon={faEnvelope} />Contact
+                        
           </Link>
         </div>
       </TextBlock>

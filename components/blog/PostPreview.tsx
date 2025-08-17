@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { BlogPost } from "../../utils/posts";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
@@ -28,19 +28,19 @@ const PostPreview: FunctionComponent<Props> = ({ post }: Props) => {
   return (
     <article className="rounded shadow mb-8 flex flex-col" key={id}>
       <div className="w-full">
-        <Link href={`/blog/${slug}`}>
-          <a className="relative">
-            {imgElement ?? imgElement}
-          </a>
+        <Link href={`/blog/${slug}`} className="relative">
+
+          {imgElement ?? imgElement}
+
         </Link>
       </div>
       <div className="flex flex-col justify-between h-full p-4">
         <div>
           <h2 className="mt-0 mb-2">
-            <Link href={`/blog/${slug}`}>
-              <a className="no-underline">
-                {title}
-              </a>
+            <Link href={`/blog/${slug}`} className="no-underline">
+
+              {title}
+
             </Link>
           </h2>
           <div className="text-sm mb-4">
@@ -51,15 +51,15 @@ const PostPreview: FunctionComponent<Props> = ({ post }: Props) => {
           </div>
         </div>
         <div>
-          <Link href={`/blog/${slug}`}>
-            <a className="btn btn-secondary inline-block">
+          <Link href={`/blog/${slug}`} className="btn btn-secondary inline-block">
+            
               Read more
-            </a>
+            
           </Link>
         </div>
       </div>
     </article>
-  )
+  );
 }
 
 export default PostPreview;

@@ -11,12 +11,12 @@ const NavItem: FunctionComponent<Params> = ({ href, text }) => {
   const router = useRouter();
   const active = href == router.asPath ? "border-white" : "border-transparent";
   return (
-    <Link href={href}>
-      <a
-        className={`border-b-2 py-2 hover:border-white transition-colors ${active}`}
-      >
-        {text}
-      </a>
+    <Link
+      href={href}
+      className={`border-b-2 py-2 hover:border-white transition-colors ${active}`}>
+
+      {text}
+
     </Link>
   );
 };

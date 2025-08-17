@@ -34,7 +34,7 @@ const ContactForm: FunctionComponent = () => {
       voightkampff: isABot,
     };
 
-    if(isABot !== ""){
+    if (isABot !== "") {
       toast.error('Cannot send your message', messageStyles);
       return;
     }
@@ -137,13 +137,13 @@ const ContactForm: FunctionComponent = () => {
         />
       </div>
       <div className="text-center mt-10 mb-4 d-none">
-        <input 
-          type="text" 
-          name="voightkampff" 
+        <input
+          type="text"
+          name="voightkampff"
           value={isABot}
-          style={{display: 'none'}} 
-          tabIndex={-1} 
-          autoComplete="off" 
+          style={{ display: 'none' }}
+          tabIndex={-1}
+          autoComplete="off"
           onChange={(e) => {
             setIsABot(e.target.value);
           }} />
@@ -157,7 +157,7 @@ const ContactForm: FunctionComponent = () => {
           <FontAwesomeIcon icon={faPaperPlane} /> Send it!
         </button>
       </div>
-      
+
     </form>
   );
 };

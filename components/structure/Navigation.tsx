@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import Link from "next/link";
 import NavItem from "./NavItem";
 import logo from "../../assets/logo.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Navigation: FunctionComponent = () => {
   const myName = "Marta Moros Batlle";
@@ -12,19 +12,19 @@ const Navigation: FunctionComponent = () => {
       <div className="flex justify-between items-center flex-col sm:flex-row">
         <div className="flex flex-col">
           <div className="flex items-center space-x-4">
-            <Link href="/">
-              <a title="Go to homepage">
-                <Image
-                  alt="Logo"
-                  src={logo}
-                  layout="fixed"
-                  width={46}
-                  height={46}
-                />
-              </a>
+            <Link href="/" title="Go to homepage">
+
+              <Image
+                alt="Logo"
+                src={logo}
+                layout="fixed"
+                width={46}
+                height={46}
+              />
+
             </Link>
             <div className="flex flex-col">
-              <div className="my-0 leading-none text-2xl text-white font-semibold font-title">
+              <div className="my-0 leading-none text-2xl text-white font-semibold ">
                 {myName}
               </div>
               <div className="text-purple-200 text-sm">
@@ -34,7 +34,7 @@ const Navigation: FunctionComponent = () => {
           </div>
         </div>
         <nav className="flex space-x-4 text-white">
-          <NavItem href="/blog" text="Blog" />
+          {/* <NavItem href="/blog" text="Blog" /> */}
           <NavItem href="/about" text="About me" />
           <NavItem href="/contact" text="Contact" />
         </nav>

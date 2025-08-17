@@ -5,18 +5,8 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer({
-  reactStrictMode: true,
-  output: { path: path.resolve(__dirname, "static") },
-  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    config.module.rules.push({
-      test: /\.pdf/,
-      type: "asset/resource",
-      generator: {
-        filename: "static/[name]-[hash][ext]",
-      },
-    });
-
-    return config;
+  turbopack: {
+    // ...
   },
   images: {
     domains: ['localhost', 'faceofboe.martam.dev']

@@ -88,28 +88,28 @@ export const getStaticProps: GetStaticProps = async (context) => {
   `;
 
   try {
-    const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/graphql`;
+    // const endpoint = `${process.env.NEXT_PUBLIC_API_URL}/graphql`;
 
-    const { posts } = await request(endpoint, QUERY, {
-      _eq: state, 
-      sort: orderBy,
-      pageNumber: pageNumber,
-      limit: pageSize
-    });
-    const typedPosts = processPosts(posts);
+    // const { posts } = await request(endpoint, QUERY, {
+    //   _eq: state, 
+    //   sort: orderBy,
+    //   pageNumber: pageNumber,
+    //   limit: pageSize
+    // });
+    // const typedPosts = processPosts(posts);
 
-    const { posts_aggregated } = await request(endpoint, QUERY_TOTAL, {_eq: state});
-    let pagination = {};
-    if(posts_aggregated.length){
-      const { count: { id: postsNumber }} = posts_aggregated[0];
-      pagination = processPagination(pageNumber, pageSize, postsNumber);
-    }
+    // const { posts_aggregated } = await request(endpoint, QUERY_TOTAL, {_eq: state});
+    // let pagination = {};
+    // if(posts_aggregated.length){
+    //   const { count: { id: postsNumber }} = posts_aggregated[0];
+    //   pagination = processPagination(pageNumber, pageSize, postsNumber);
+    // }
     
 
     return {
       props: {
-        posts: typedPosts,
-        pagination: pagination,
+        posts: [],
+        pagination: {},
       },
     }
 

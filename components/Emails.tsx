@@ -13,15 +13,15 @@ const mailerConfig: EmailConfig = {
     host: process.env.MAIL_HOST || '',
     port: Number(process.env.MAIL_PORT),
     secure: Boolean(process.env.MAIL_SECURE),
-    auth: { 
-      user: process.env.MAIL_USERNAME || '', 
+    auth: {
+      user: process.env.MAIL_USERNAME || '',
       pass: process.env.MAIL_PASSWORD || ''
     },
   },
   defaults: {
-    from: { 
-      name: 'Marta Moros Batlle', 
-      address: process.env.MAIL_USERNAME  || ''
+    from: {
+      name: 'Marta Moros Batlle',
+      address: process.env.MAIL_USERNAME || ''
     },
   },
 }
@@ -33,12 +33,12 @@ type MailParams = {
 };
 
 export const ContactEmail = ({ name, email, message }: MailParams) => {
-  let splitMessage = message.split("\n").map(function(item, idx) {
+  let splitMessage = message.split("\n").map(function (item, idx) {
     return (
-        <span key={idx}>
-            {item}
-            <br/>
-        </span>
+      <span key={idx}>
+        {item}
+        <br />
+      </span>
     )
   });
 
@@ -59,12 +59,12 @@ export const ContactEmail = ({ name, email, message }: MailParams) => {
 };
 
 export const ThankYouEmail = ({ name, message }: MailParams) => {
-  let splitMessage = message.split("\n").map(function(item, idx) {
+  let splitMessage = message.split("\n").map(function (item, idx) {
     return (
-        <span key={idx}>
-            {item}
-            <br/>
-        </span>
+      <span key={idx}>
+        {item}
+        <br />
+      </span>
     )
   });
   return {
@@ -76,11 +76,11 @@ export const ThankYouEmail = ({ name, message }: MailParams) => {
           Thank you for your message. I’ll get back to you as soon as possible.
         </p>
         <p>This is the message you sent:</p>
-        <hr style={{margin: "20px 0"}} />
-        <div style={{paddingLeft: "30px"}}>
+        <hr style={{ margin: "20px 0" }} />
+        <div style={{ paddingLeft: "30px" }}>
           {splitMessage}
         </div>
-        <hr style={{margin: "20px 0"}} />
+        <hr style={{ margin: "20px 0" }} />
         <br />
         <p>
           See you,
