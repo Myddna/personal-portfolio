@@ -19,7 +19,7 @@ const Footer: FunctionComponent = () => {
         <li className="leading-none flex space-x-1">
           <SocialLink url="https://github.com/Myddna" />
           <SocialLink url="https://www.linkedin.com/in/marta-moros-batlle/" />
-          <SocialLink url="https://twitter.com/myddna" />
+          <SocialLink url="https://bsky.app/profile/myddna.bsky.social" />
           <SocialLink url="https://www.instagram.com/myddna" />
           <SocialLink url="https://dispersion.es" />
         </li>

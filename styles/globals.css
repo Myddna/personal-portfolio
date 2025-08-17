@@ -1,99 +1,70 @@
-/* @import "tailwindcss"; */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 @layer base {
   h1 {
-    @apply text-5xl lg:text-6xl mt-6 mb-7 text-purple-800 font-light ;
+    @apply text-5xl lg:text-6xl mt-6 mb-7 text-purple-800 font-light;
   }
+
   h2 {
-    @apply text-3xl lg:text-4xl mt-6 mb-5 text-purple-600 font-light ;
+    @apply text-3xl lg:text-4xl mt-6 mb-5 text-purple-600 font-light;
   }
+
   h3 {
-    @apply text-2xl lg:text-3xl mt-4 mb-3 text-purple-600 font-light ;
+    @apply text-2xl lg:text-3xl mt-4 mb-3 text-purple-600 font-light;
   }
+
   p {
     @apply mb-4;
   }
+
   main a {
     @apply text-purple-700 underline hover:text-yellow-500 transition-colors;
   }
+
   main ul {
     @apply pl-10 my-6 list-disc;
   }
+
   main ol {
     @apply pl-10 my-6 list-decimal;
   }
+}
+
+@utility btn {
+  @apply font-light text-white hover:text-white disabled:opacity-50 no-underline leading-none bg-gradient-to-b px-4 pt-2.5 pb-3 pl-5 pr-5 rounded;
 }
 
 @layer components {
   .section-title {
     @apply font-semibold text-purple-900;
   }
-  .btn {
-    @apply font-light text-white hover:text-white disabled:opacity-50 no-underline leading-none bg-gradient-to-b px-4 pt-2.5 pb-3 pl-5 pr-5 rounded;
-  }
+
   .btn-primary {
     @apply btn from-purple-700 to-purple-900 hover:to-purple-700;
   }
+
   .btn-secondary {
     @apply btn from-yellow-400 to-yellow-600 hover:to-yellow-400;
   }
+
   .btn-discrete {
     @apply btn from-purple-300 to-purple-500 hover:to-purple-300;
   }
+
   .form-group {
     @apply mb-4 flex items-baseline;
   }
+
   label {
     @apply w-24 mr-6 text-right font-semibold;
   }
+
   input[type="text"],
   input[type="email"] {
     @apply w-full py-1 pl-2 border-b-2 border-gray-300 text-gray-500 focus:outline-none focus:ring focus:border-purple-300 focus:ring-purple-200 rounded-sm;
   }
+
   textarea {
     @apply w-full py-1 pl-2 border-b-2 border-gray-300 text-gray-500 focus:outline-none focus:ring focus:border-purple-300 focus:ring-purple-200 rounded-sm;
   }
-}
-
-@layer utilities {
-  @media screen and (min-width: 1200px){
-    .post-image-full {
-      margin-left: -3rem;
-      margin-right: -3rem;
-    }
-  }
-}
-
-/** Content generated from Markdown */
-.markdown blockquote {
-  @apply px-4 py-2 border-l-4 border-purple-300 my-6 ml-4 italic font-light text-xl;
-}
-.markdown blockquote p:last-child {
-  @apply mb-0;
-}
-.markdown p {
-  @apply leading-relaxed;
-}
-.markdown table {
-  @apply mx-auto my-6;
-}
-.markdown table th,
-.markdown table td {
-  @apply px-4 py-2;
-}
-
-.markdown table th {
-  @apply border-b-2 border-purple-300;
-}
-.markdown table td {
-  @apply border-b-2 border-l-2 border-purple-100;
-}
-.markdown table td:first-child {
-  @apply border-l-0;
-}
-.markdown code {
-  @apply text-sm;
 }
