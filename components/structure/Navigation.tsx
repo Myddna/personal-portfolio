@@ -2,7 +2,7 @@ import { FunctionComponent } from "react";
 import Link from "next/link";
 import NavItem from "./NavItem";
 import logo from "../../assets/logo.svg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Navigation: FunctionComponent = () => {
   const myName = "Marta Moros Batlle";
@@ -24,7 +24,7 @@ const Navigation: FunctionComponent = () => {
 
             </Link>
             <div className="flex flex-col">
-              <div className="my-0 leading-none text-2xl text-white font-semibold font-title">
+              <div className="my-0 leading-none text-2xl text-white font-semibold ">
                 {myName}
               </div>
               <div className="text-purple-200 text-sm">

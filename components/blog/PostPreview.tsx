@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 import { BlogPost } from "../../utils/posts";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
