@@ -14,7 +14,7 @@ const LatestProjects: FunctionComponent<Props> = ({
   repos,
 }: Props) => {
   const repoList =
-    repos &&
+    Array.isArray(repos) &&
     repos
       // Sort by recently pushed
       .sort((a: any, b: any) => {
@@ -40,7 +40,7 @@ const LatestProjects: FunctionComponent<Props> = ({
   return (
     <TextBlock className={className}>
       <h1>Latest projects</h1>
-      <p>These are the personal projects on which I’ve been working lately.</p>
+      <p>{'These are the personal projects on which I\'ve been working lately.'}</p>
       <div className="grid md:grid-cols-3 gap-4">{repoList}</div>
       <div className="mt-8 flex">
         <a
