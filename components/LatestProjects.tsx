@@ -29,7 +29,7 @@ const LatestProjects: FunctionComponent<Props> = ({
         }
       })
       // Keep the latest 3 pushed repos
-      .slice(0, 6)
+      .slice(0, 3)
       // Generate the cards
       .map((repo: any, idx: number) => {
         return (
