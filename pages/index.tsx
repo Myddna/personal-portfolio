@@ -92,7 +92,9 @@ const Home: NextPage<Props> = ({ repos }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const res = await fetch("https://api.github.com/users/Myddna/repos");
+  const headers = new Headers();
+  headers.append("Authentication", `Bearer: ${process.env.GITHUB_PAC}`)
+  const res = await fetch("https://api.github.com/users/Myddna/repos", { headers });
   const repos = await res.json();
 
   return {
